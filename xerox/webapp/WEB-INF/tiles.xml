@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+    <definition name="default" template="/layout/default.jsp">
+        <put-attribute name="title" value="XEROX - Facturación Dígital"/>
+        <put-attribute name="script" value="/layout/script.jsp"/>
+        <put-attribute name="head" value="/layout/head.jsp"/>
+        <put-attribute name="menu" value="/layout/menu.jsp"/>
+        <put-attribute name="body" value=""/>
+        <put-attribute name="foot" value="/layout/foot.jsp"/>
+    </definition>
+
+    <definition name="ajax" extends="default">
+        <put-attribute name="title" value="XEROX - Facturación Electrónica"/>
+        <put-attribute name="head" value=""/>
+        <put-attribute name="script" value=""/>
+        <put-attribute name="menu" value=""/>
+        <put-attribute name="body" value=""/>
+        <put-attribute name="foot" value=""/>
+    </definition>
+</tiles-definitions>

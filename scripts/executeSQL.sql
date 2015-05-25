@@ -1,0 +1,12 @@
+@99_deleteAll.sql
+@01_createObjectsBATCH.sql
+@02_createObjectsQUARTZ.sql
+@03_createTable.sql
+@04_createExternalTable.sql
+@05_createSequence.sql
+@06_loadInitialData.sql
+@07_createPackageUtil.sql
+@08_createView.sql
+@09_createPackage.sql
+@10_createPackageBody.sql
+@11_grants.sql

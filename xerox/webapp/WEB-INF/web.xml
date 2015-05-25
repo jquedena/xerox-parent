@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         id="WebApp_ID" version="3.0">
+    <display-name>XEROX - Facturacion Digital</display-name>
+    <description>XEROX - Facturacion Digital</description>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:/applicationContext.xml</param-value>
+    </context-param>
+
+    <servlet>
+        <servlet-name>dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>s
+        <url-pattern>*.html</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>*.json</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>*.xml</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>*.zip</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>*.log</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Log4JInitServlet</servlet-name>
+        <servlet-class>com.everis.web.servlet.Log4jDailyServlet</servlet-class>
+        <init-param>
+            <param-name>app</param-name>
+            <param-value>fatca</param-value>
+        </init-param>
+        <init-param>
+            <param-name>log4jService</param-name>
+            <param-value>log4jService</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Log4JInitServlet</servlet-name>
+        <url-pattern>/log4JServlet.do</url-pattern>
+    </servlet-mapping>
+
+    <filter>
+        <filter-name>sessionFilter</filter-name>
+        <filter-class>com.everis.web.filter.SessionFilter</filter-class>
+        <init-param>
+            <param-name>NOT_AUTHORIZED</param-name>
+            <param-value>notAuthorized.html</param-value>
+        </init-param>
+        <init-param>
+            <param-name>SIGN_OUT</param-name>
+            <param-value>signOut.html</param-value>
+        </init-param>
+        <init-param>
+            <param-name>FILTER_SERVICE</param-name>
+            <param-value>filterService</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>sessionFilter</filter-name>
+        <servlet-name>dispatcher</servlet-name>
+    </filter-mapping>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>com.everis.web.listener.WebServletContextListener</listener-class>
+    </listener>
+
+    <welcome-file-list>
+        <welcome-file>redirect.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>
