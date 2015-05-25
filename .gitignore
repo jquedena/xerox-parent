@@ -1,0 +1,20 @@
+# Proyect Eclipse
+/.settings
+/.project
+/.classpath
+/target
+/*/.settings
+/*/.project
+/*/.classpath
+/*/.gitignore
+/*/target
+/*/bin
+/*/*.log
+/*/*.~sql
+
+
+# Proyect Idea
+/.idea/
+/*.iml
+/*/*.iml
+/*/*.~pck
