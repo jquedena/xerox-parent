@@ -1,0 +1,30 @@
+#menu,
+#menu .ui-widget-header {
+    height: 47px;
+    background: url(../theme/bbva/images/ui-bg_glass_bbva_2x47.png) repeat;
+}
+
+img {
+    border: 0px;
+}
+
+a {
+    border: 0px;
+}
+
+html, body {
+    overflow: hidden;
+}
+
+.pui-button-autocomplete {
+    top: -6px;
+}
+
+.ui-dialog-titlebar button.ui-state-hover {
+    background: #fff;
+}
+
+input[type="file"] {
+    /* IE 5-7 */
+    filter: alpha(opacity=0);
+}

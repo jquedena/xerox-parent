@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:batch="http://www.springframework.org/schema/batch"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd">
+
+    <bean id="verificarArchivoTasklet" class="com.bbva.fatca.batch.tasklet.VerifyFileTasklet"
+          scope="step">
+        <property name="archivoOrigen" value="#{jobParameters[archivoOrigen]}"/>
+    </bean>
+
+    <bean id="cargarArchivoCuentasTasklet"
+          class="com.bbva.fatca.batch.tasklet.ExecuteStoreProcedureTasklet">
+        <property name="dataSourceName" value="jdbc/APP_FATCA"/>
+        <property name="storeProcedure" value="FATCA.PKG_PROCESOS_ENTRADA.SP_CARGAR_CUENTAS"/>
+    </bean>
+
+    <bean id="moverArchivoTasklet" class="com.bbva.fatca.batch.tasklet.MoveFileTasklet"
+          scope="step">
+        <property name="archivoOrigen" value="#{jobParameters[archivoOrigen]}"/>
+        <property name="directorioDestino" value="#{jobParameters[directorioDestino]}"/>
+    </bean>
+
+    <batch:job id="procesoCargaArchivoCuentas">
+        <batch:step id="verificarArchivo" next="cargaArchivoCuentas">
+            <batch:tasklet ref="verificarArchivoTasklet"/>
+        </batch:step>
+        <batch:step id="cargaArchivoCuentas" next="moverArchivoCuentas">
+            <batch:tasklet ref="cargarArchivoCuentasTasklet"/>
+        </batch:step>
+        <batch:step id="moverArchivoCuentas">
+            <batch:tasklet ref="moverArchivoTasklet"/>
+        </batch:step>
+        <batch:listeners>
+            <batch:listener ref="monitoringExecutionListener"/>
+        </batch:listeners>
+    </batch:job>
+</beans>

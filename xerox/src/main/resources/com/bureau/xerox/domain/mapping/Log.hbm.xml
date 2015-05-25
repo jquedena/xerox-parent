@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-feb-2015 5:46:04 by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.bureau.xerox.domain.Log" table="LOG">
+        <id name="id" type="long">
+            <column name="ID" precision="10" scale="0" />
+            <generator class="sequence">
+                <param name="sequence">SQ_LOG</param>
+            </generator>
+        </id>
+        <property name="mensaje" type="string">
+            <column name="MENSAJE" length="4000" not-null="true">
+                <comment>MENSAJE</comment>
+            </column>
+        </property>
+        <property name="estado" type="string">
+            <column name="ESTADO" length="4">
+                <comment>ESTADO</comment>
+            </column>
+        </property>
+        <property name="usuarioCreacion" type="string">
+            <column name="USUARIO_CREACION" length="28" not-null="true">
+                <comment>USUARIO DE CREACION</comment>
+            </column>
+        </property>
+        <property name="usuarioModificacion" type="string">
+            <column name="USUARIO_MODIFICACION" length="28">
+                <comment>USUARIO DE MODIFICACION</comment>
+            </column>
+        </property>
+        <property name="fechaCreacion" type="timestamp">
+            <column name="FECHA_CREACION" not-null="true">
+                <comment>FECHA DE CREACION</comment>
+            </column>
+        </property>
+        <property name="fechaModificacion" type="timestamp">
+            <column name="FECHA_MODIFICACION">
+                <comment>FECHA DE MODIFICACION</comment>
+            </column>
+        </property>
+        <property name="idProceso" type="long">
+            <column name="PROCESO_ID" length="10">
+                <comment>ID DE PROCESO</comment>
+            </column>
+        </property>
+        <property name="idPeriodo" type="long">
+            <column name="PERIODO_ID" length="10">
+                <comment>ID DEL PERIODO</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

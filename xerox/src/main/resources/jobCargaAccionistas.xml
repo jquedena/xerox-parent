@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:batch="http://www.springframework.org/schema/batch"
+       xsi:schemaLocation="http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="eliminarAccionistasTasklet" class="com.bbva.fatca.batch.tasklet.QueryTasklet">
+        <property name="dataSourceName" value="jdbc/APP_FATCA"/>
+        <property name="query"
+                  value="DELETE FROM FATCA.ACCIONISTAS WHERE PERIODO_ID = (SELECT ID FROM FATCA.PERIODO WHERE ESTADO='1')"/>
+    </bean>
+
+    <bean id="accionistasReader" class="com.bbva.fatca.batch.reader.AccionistasReader"
+          scope="step">
+        <property name="archivo" value="#{jobParameters[archivoOrigen]}"/>
+        <property name="nombreHoja" value="#{jobParameters[nombreHoja]}"/>
+        <property name="filaInicial" value="#{jobParameters[filaInicial]}"/>
+        <property name="marcasAccionistas" value="#{jobParameters[marcasAccionistas]}"/>
+        <property name="periodoService" ref="periodoService"/>
+    </bean>
+
+    <bean id="accionistasProcessor" class="com.bbva.fatca.batch.processor.AccionistasProcessor"
+          scope="step">
+        <property name="codigoRegistro" value="#{jobParameters[codigoRegistro]}"/>
+        <property name="logService" ref="logService"/>
+        <property name="parametroService" ref="parametroService"/>
+        <property name="cuentaService" ref="cuentaService"/>
+        <property name="monitoringExecutionListener" ref="monitoringExecutionListener"></property>
+    </bean>
+
+    <bean id="accionistasWriter"
+          class="org.springframework.batch.item.database.JdbcBatchItemWriter"
+          scope="step">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="sql">
+            <value>
+                <![CDATA[
+	            	INSERT INTO FATCA.ACCIONISTAS (ID, EMP_CODIGO_CLIENTE, EMP_TIPO_DOCUMENTO, EMP_NRO_DOCUMENTO, EMP_RAZON_SOCIAL, ACC_NOMBRE, ACC_APELLIDO_PATERNO, ACC_APELLIDO_MATERNO, ACC_CIUDAD, ACC_PAIS_NACIMIENTO, ACC_DIRECCION, ACC_DISTRITO, ACC_DEPARTAMENTO, ACC_CODIGO_POSTAL, ACC_PAIS_RESIDENCIA, ACC_NRO_ACCIONES, ACC_PORC_ACCIONES, ACC_PAIS_1, ACC_TIN_1, ACC_PAIS_2, ACC_TIN_2, ACC_PAIS_3, ACC_TIN_3, APD_TIPO_DOCUMENTO, APD_NRO_DOCUMENTO, APD_NOMBRE, FECHA_RECEPCION, FECHA_REGISTRO, ESTADO, USUARIO_CREACION, FECHA_CREACION, PERIODO_ID)
+					VALUES (FATCA.SQ_ACCIONISTAS.nextval, :empCodigoCliente, :empTipoDocumento, :empNroDocumento, :empRazonSocial, :accNombre, :accApellidoPaterno, :accApellidoMaterno, :accCiudadNacimiento, :accPaisNacimiento, :accDireccion, :accDistrito, :accDepartamento, :accCodigoPostal, :accPaisResidencia, :accNroAcciones, :accPorcAcciones, :accPais1, :accTin1, :accPais2, :accTin2, :accPais3, :accTin3, :apdTipoDocumento, :apdNroDocumento, :apdNombre, :fechaRecepcion, :fechaRegistro, '4', :usuarioCreacion, sysdate, :identificadorPeriodo)
+	            ]]>
+            </value>
+        </property>
+        <property name="itemSqlParameterSourceProvider">
+            <bean
+                    class="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider"/>
+        </property>
+    </bean>
+
+    <batch:job id="procesoCargarAccionistas">
+        <batch:step id="eliminarAccionistasDelPeriodo" next="cargaAccionistasDelPeriodo">
+            <batch:tasklet ref="eliminarAccionistasTasklet"/>
+        </batch:step>
+        <batch:step id="cargaAccionistasDelPeriodo" next="moverArchivoAccionistas">
+            <batch:tasklet>
+                <batch:chunk
+                        processor="accionistasProcessor"
+                        reader="accionistasReader"
+                        writer="accionistasWriter"
+                        commit-interval="100"/>
+            </batch:tasklet>
+        </batch:step>
+        <batch:step id="moverArchivoAccionistas">
+            <batch:tasklet ref="moverArchivoTasklet"/>
+        </batch:step>
+        <batch:listeners>
+            <batch:listener ref="monitoringExecutionListener"/>
+        </batch:listeners>
+    </batch:job>
+</beans>

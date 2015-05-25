@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:batch="http://www.springframework.org/schema/batch"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd">
+
+    <bean id="cargaTablasFATCATasklet"
+          class="com.bbva.fatca.batch.tasklet.ExecuteStoreProcedureTasklet">
+        <property name="dataSourceName" value="jdbc/APP_FATCA"/>
+        <property name="storeProcedure" value="FATCA.PKG_PROCESOS_SALIDA.SP_CARGAR_FATCA"/>
+    </bean>
+
+    <bean id="generarArchivoXMLTasklet" class="com.bbva.fatca.batch.tasklet.GenerateFileTasklet"
+          scope="step">
+        <property name="nombreArchivo" value="#{jobParameters[archivoXML]}"/>
+        <property name="generaArchivoService" ref="generaArchivoService"/>
+        <property name="parametroService" ref="parametroService"/>
+    </bean>
+
+    <bean id="verificarArchivoSalidaTasklet" class="com.bbva.fatca.batch.tasklet.VerifyFileFromParameterTasklet"
+          scope="step">
+        <property name="parametroService" ref="parametroService"></property>
+    </bean>
+
+    <bean id="firmarArchivoTasklet" class="com.bbva.fatca.batch.tasklet.FirmarArchivoTasklet"
+          scope="step">
+        <property name="operacion" value="firmar"/>
+        <property name="archivoEntrada" value="#{jobParameters[archivoXML]}"/>
+        <property name="archivoSalida" value="#{jobParameters[archivoXMLFirmado]}"/>
+        <property name="certificado" value="#{jobParameters[certificadoBBVA]}"/>
+        <property name="llaveCertificadoBBVA" value="#{jobParameters[llaveCertificadoBBVA]}"/>
+    </bean>
+
+    <bean id="comprimirArchivoTasklet" class="com.bbva.fatca.batch.tasklet.ComprimirArchivoTasklet"
+          scope="step">
+        <property name="operacion" value="comprimir"/>
+        <property name="archivoEntrada" value="#{jobParameters[archivoXMLFirmado]}"/>
+        <property name="archivoSalida" value="#{jobParameters[archivoXMLFirmadoZip]}"/>
+    </bean>
+
+    <bean id="cifrarArchivoTasklet" class="com.bbva.fatca.batch.tasklet.CifrarArchivoTasklet"
+          scope="step">
+        <property name="operacion" value="cifrar"/>
+        <property name="archivoEntrada" value="#{jobParameters[archivoXMLFirmadoZip]}"/>
+        <property name="archivoSalida" value="#{jobParameters[archivoXMLFirmadoCifrado]}"/>
+        <property name="archivoEntradaLlave" value="#{jobParameters[certificadoIRS]}"/>
+        <property name="archivoSalidaLlave" value="#{jobParameters[llaveIRS]}"/>
+    </bean>
+
+    <bean id="generarArchivoTasklet" class="com.bbva.fatca.batch.tasklet.ComprimirArchivoTasklet"
+          scope="step">
+        <property name="operacion" value="comprimir"/>
+        <property name="archivoEntrada" value="#{jobParameters[listaArchivos]}"/>
+        <property name="archivoSalida" value="#{jobParameters[archivoFinal]}"/>
+    </bean>
+
+    <batch:job id="procesoGeneracionArchivo">
+        <batch:step id="cargaTablasFATCA" next="generarArchivoXML">
+            <batch:tasklet ref="cargaTablasFATCATasklet"/>
+        </batch:step>
+        <batch:step id="generarArchivoXML" next="verificarArchivos">
+            <batch:tasklet ref="generarArchivoXMLTasklet"/>
+        </batch:step>
+        <batch:step id="verificarArchivos" next="firmarArchivoXML">
+            <batch:tasklet ref="verificarArchivoSalidaTasklet"/>
+        </batch:step>
+        <batch:step id="firmarArchivoXML" next="comprimirArchivoXML">
+            <batch:tasklet ref="firmarArchivoTasklet"/>
+        </batch:step>
+        <batch:step id="comprimirArchivoXML" next="cifrarArchivoXML">
+            <batch:tasklet ref="comprimirArchivoTasklet"/>
+        </batch:step>
+        <batch:step id="cifrarArchivoXML" next="generarArchivoFinal">
+            <batch:tasklet ref="cifrarArchivoTasklet"/>
+        </batch:step>
+        <batch:step id="generarArchivoFinal">
+            <batch:tasklet ref="generarArchivoTasklet"/>
+        </batch:step>
+        <batch:listeners>
+            <batch:listener ref="monitoringExecutionListener"/>
+        </batch:listeners>
+    </batch:job>
+</beans>

@@ -1,0 +1,1025 @@
+@font-face {
+    font-family: "BBVA Office Light";
+    src: url("../fonts/bbvaoffice-light.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "BBVA Web Book";
+    src: url("../fonts/bbvaweb-book.eot");
+    src: url("../fonts/bbvaweb-book.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/bbvaweb-book.woff") format("woff"),
+    url("../fonts/bbvaweb-book.ttf") format("truetype"),
+    url("../fonts/bbvaweb-book.svg") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "BBVA Web Light";
+    src: url("../fonts/bbvaweb-light.eot");
+    src: url("../fonts/bbvaweb-light.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/bbvaweb-light.woff") format("woff"),
+    url("../fonts/bbvaweb-light.ttf") format("truetype"),
+    url("../fonts/bbvaweb-light.svg") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "BBVA Web Medium";
+    src: url("../fonts/bbvaweb-medium.eot");
+    src: url("../fonts/bbvaweb-medium.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/bbvaweb-medium.woff") format("woff"),
+    url("../fonts/bbvaweb-medium.ttf") format("truetype"),
+    url("../fonts/bbvaweb-medium.svg") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.ui-print-text {
+    display: none;
+}
+
+* {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+html, body {
+    overflow: auto;
+    padding: 0px;
+    margin: 0px;
+    height: 100%;
+}
+
+body {
+    text-align: justify;
+}
+
+#layout {
+    margin: auto;
+    width: 960px;
+    height: 100%;
+    padding: 0px;
+}
+
+#head, #menu, #body, #foot {
+    padding: 0px;
+    margin: 0px;
+}
+
+#menu {
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+#head {
+    height: 90px;
+}
+
+#foot {
+}
+
+#body {
+    position: relative;
+    overflow: auto;
+}
+
+#tblBody {
+    Width: 100%;
+}
+
+.panelHead {
+    width: 100%;
+    height: 90px;
+    background: url(../img/marca/logoBBVA.png) no-repeat;
+}
+
+.panelTitle {
+    position: relative;
+    top: 10px;
+    height: 50px;
+    width: 100%;
+    text-align: right;
+    vertical-align: bottom;
+}
+
+.panelTitle span {
+    height: 50px;
+    line-height: 50px;
+    text-align: right;
+    vertical-align: bottom;
+    font-size: 30px;
+    color: rgb(00, 110, 193);
+    font-family: "BBVA Web Light";
+}
+
+.panelUser {
+    padding-top: 10px;
+    padding-right: 0px;
+    width: 100%;
+    text-align: right;
+    line-height: 18px;
+}
+
+.panelUser,
+.panelUser span,
+.panelUser .panelUserBuscar {
+    font-size: 12px;
+    color: rgb(77, 77, 79);
+}
+
+.panelUser .panelUserBuscar {
+    display: inline;
+}
+
+.panelUser .username {
+    /** font-family: "BBVA Web Medium"; */
+    color: rgb(00, 158, 229);
+}
+
+.panelUser a,
+.panelUser a:active,
+.panelUser a:hover,
+.panelUser a:visited {
+    color: white;
+    background: rgb(200, 23, 94);
+    border: 0px;
+    padding: 4px 8px;
+    text-decoration: none;
+}
+
+.panelUser a span {
+    color: white;
+    display: inline;
+}
+
+.hide-title-bar {
+    border: 1px solid #dcdcdc;
+}
+
+.hide-title-bar .ui-dialog-titlebar,
+.hide {
+    display: none;
+}
+
+.panelUser .panelUserBuscar .soporte {
+    background: url("../img/marca/ico-spriteGraficos16.png") no-repeat scroll 0 -3599px transparent;
+    color: #71777f;
+    padding-left: 16px;
+}
+
+.panelUser .panelUserBuscar .ayuda {
+    background: url("../img/marca/ico-spriteAlertaInformacion16.png") no-repeat scroll 0 -3309px rgba(0, 0, 0, 0);
+    color: #c4136c;
+    padding-left: 14px;
+}
+
+table {
+    border-spacing: 0px;
+}
+
+table th,
+table td {
+    border-collapse: collapse;
+    padding: 0px;
+}
+
+.panelMenu {
+    width: 100%;
+    height: 45px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.panelMenu .title {
+    vertical-align: bottom;
+    font-weight: normal;
+}
+
+#menu,
+#menu .ui-widget-header {
+    height: 45px;
+    /* background: linear-gradient(#0079c1, #00529b) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: rgb(0, 120, 210); */
+    border-radius: 5px;
+}
+
+#menu .ui-widget-header {
+    font-weight: normal;
+}
+
+#body .ui-accordion-header {
+    margin-bottom: 0px;
+}
+
+.ui-datepicker-buttonpane .ui-priority-primary,
+.ui-timepicker-div .ui-widget-header,
+.ui-dialog .ui-dialog-title {
+    font-weight: bold;
+}
+
+.ui-dialog {
+    /*
+    background-color: #fdfefe;
+    background-image: linear-gradient(#fdfefe, #ecf8fd);
+    background: -moz-linear-gradient(#fdfefe, #ecf8fd) repeat scroll 0 0 transparent;
+    border: 1px solid #89afd3;
+    */
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+    -moz-box-shadow: 2px 2px 0 #fff inset, #fff -2px -2px 0 inset;
+    -webkit-box-shadow: 2px 2px 0 #fff inset, #fff -2px -2px 0 inset;
+    -o-box-shadow: 2px 2px 0 #fff inset, #fff -2px -2px 0 inset;
+    box-shadow: 2px 2px 0 #fff inset, #fff -2px -2px 0 inset;
+    position: fixed;
+    padding: 0;
+}
+
+.ui-dialog .ui-widget-header {
+    color: #0072C9;
+    border: none;
+    background: none;
+}
+
+.ui-dialog .ui-dialog-buttonpane {
+    background: none;
+    padding: 0.3em 0.5em 0.3em 0.4em;
+    border: none;
+}
+
+.ui-dialog .ui-dialog-titlebar .ui-button {
+    border: none;
+    background: none;
+}
+
+.ui-dialog .ui-dialog-titlebar .ui-icon {
+    background-image: url("../theme/bbva/images/ui-icons_2361ad_256x240.png");
+}
+
+.ui-dialog .ui-dialog-content {
+    padding: 0.5em 1em 0em 1em;
+}
+
+.ui-dialog .ui-dialog-titlebar-close {
+    right: 0.7em;
+}
+
+.ui-dialog .ui-dialog-titlebar {
+    padding: 0.6em 1em;
+}
+
+.ui-datepicker .ui-widget-header {
+	/*
+    background: linear-gradient(#0079c1, #00529b) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    */
+}
+
+#body .ui-accordion-content {
+    padding: 1em;
+}
+
+#body .ui-widget-header {
+	/*
+    background: none repeat scroll 0 0 #f0f2ef;
+    border: 1px solid #dcdcdc;
+    */
+    border-radius: 5px 5px 0 0;
+    height: 36px;
+    line-height: 34px;
+    padding: 0 9px 0 19px;
+    position: relative;
+    z-index: 1;
+    color: black;
+}
+
+#layout .ui-widget-overlay {
+	/*
+    background: #3475c5;
+    */
+    opacity: .3;
+    filter: Alpha(Opacity=30);
+}
+
+#layout .ui-widget-content {
+	/*
+    border: 1px solid #dcdcdc;
+    */
+}
+
+#layout .ui-widget-header {
+    font-weight: bold;
+}
+
+#layout .ui-accordion .ui-accordion-header {
+    cursor: default;
+}
+
+.pui-picklist .ui-state-default,
+.ui-datepicker .ui-state-default,
+.ui-dialog .ui-button,
+#layout .ui-button {
+	/*
+    background: #0079c1;
+    background: linear-gradient(to bottom, #0079c1 0, #00559d 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0079c1', endColorstr='#00559d', GradientType=0);
+    border: 1px solid #00559d;
+    color: #FFF;
+    */
+    cursor: pointer;
+    text-align: center;
+    vertical-align: middle;
+    text-shadow: none;
+    -webkit-filter: none;
+    filter: none;
+    box-shadow: none;
+}
+
+.li-hover a.ui-state-hover,
+.ui-datepicker .ui-state-hover,
+.ui-dialog button.ui-state-hover,
+#layout button.ui-state-hover {
+	/*
+    background: #0069b1;
+    background: linear-gradient(to bottom, #0069b1 0, #004b8c 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0069b1', endColorstr='#004b8c', GradientType=0);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .2);
+    border: 1px solid #003c6f;
+    color: #FFF;
+    */
+    text-decoration: none;
+    transition: background-position .1s linear;
+}
+
+.ui-datepicker-calendar .ui-state-default {
+	/*
+    background: #e6e6e6;
+    background: linear-gradient(to bottom, #e6e6e6 0, #ffffff 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e6e6e6', endColorstr='#ffffff', GradientType=0);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .2);
+    border: 1px solid #d3d3d3;
+    color: #0069b1;
+    */
+    text-decoration: none;
+    transition: background-position .1s linear;
+}
+
+.ui-datepicker-calendar .ui-state-active {
+	/*
+    background: #0069b1;
+    background: linear-gradient(to bottom, #e6e6e6 0, #ffffff 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e6e6e6', endColorstr='#ffffff', GradientType=0);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .2);
+    border: 1px solid #0069b1;
+    color: #0069b1;
+    */
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-position .1s linear;
+}
+
+.ui-datepicker-calendar .ui-state-hover {
+	/*
+    background: #0069b1;
+    background: linear-gradient(to bottom, #0069b1 0, #004b8c 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0069b1', endColorstr='#004b8c', GradientType=0);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .2);
+    border: 1px solid #003c6f;
+    color: #FFF;
+    */
+    text-decoration: none;
+    transition: background-position .1s linear;
+}
+
+.ui-widget-panel {
+    font-size: 0.9em;
+    border-radius: 8px;
+    /*
+    border: 1px solid #ccc;
+    */
+}
+
+.ui-jqgrid-view div.ui-widget-header {
+    border: 1px solid #e5e5e5;
+}
+
+.ui-jqgrid-htable .ui-widget-header,
+.ui-jqgrid-htable .ui-widget-content .ui-state-default {
+    font-weight: normal;
+}
+
+.ui-jqgrid tr.jqgrow td {
+    height: 26px;
+}
+
+.ui-jqgrid .jqgrid-rownum,
+.ui-jqgrid-htable th.ui-th-column-header,
+.ui-jqgrid-htable th.ui-th-column {
+    background-color: #f8f8f5;
+    background-image: none;
+    border: 1px solid #e5e5e5;
+    color: #616161;
+    border-collapse: separate;
+    border-spacing: 3px;
+    height: 36px;
+}
+
+.ui-jqgrid {
+    background: none;
+    border: 1px solid #e5e5e5;
+    border-radius: 0px;
+}
+
+.ui-jqgrid .ui-jqgrid-hdiv {
+    border: 1px solid #e5e5e5;
+    background: none;
+}
+
+.ui-jqgrid .ui-jqgrid-pager {
+    border-top: 1px solid #e5e5e5;
+    background: #f8f8f5;
+    border-radius: 0px;
+    color: #616161;
+    font-family: "BBVA Web Book";
+}
+
+.ui-jqgrid tr.ui-row-ltr td {
+    border-right: 1px solid #e5e5e5;
+}
+
+.ui-jqgrid tr.jqgrow td {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.ui-jqgrid .ui-jqgrid-pager {
+    height: 30px;
+}
+
+.ui-jqgrid th.ui-state-hover .ui-icon,
+.ui-jqgrid .ui-state-default .ui-icon {
+    background-image: url("../theme/bbva/images/ui-icons_999999_256x240.png");
+}
+
+.ui-jqgrid .ui-th-column .ui-state-hover .ui-icon {
+    background-image: url("../theme/bbva/images/ui-icons_999999_256x240.png");
+}
+
+.ui-jqgrid .ui-state-hover .ui-icon {
+    background-image: url("../theme/bbva/images/ui-icons_ffffff_256x240.png");
+}
+
+.tblMenuL {
+    float: left;
+}
+
+.tblMenuL td {
+    background: url("../img/marca/separador-menu.png") right no-repeat;
+}
+
+.tblMenu {
+    float: right;
+}
+
+.tblMenu td {
+    background: url("../img/marca/separador-menu.png") left no-repeat;
+}
+
+div.title-ico {
+    margin-left: 0px;
+    padding-left: 28px;
+    height: inherit !important;
+}
+
+div.title-ico-administracion {
+    background: url("../img/nota20x20.png") left no-repeat;
+}
+
+div.title-ico-procesos {
+    background: url("../img/ajustes20x20_white.png") left no-repeat;
+}
+
+div.title-ico-calendario {
+    background: url("../img/calendario20x20_white.png") left no-repeat;
+}
+
+div.title-ico-asesor {
+    background: url("../img/asesor20x20_white.png") left no-repeat;
+}
+
+a.fg-button-img,
+a.fg-button,
+span.fg-button {
+    float: right !important;
+    margin: 0px;
+    padding: 0em .9em 0em .9em;
+    vertical-align: middle;
+    line-height: 42px;
+    height: 44px;
+    background-image: none;
+}
+
+a.fg-button-ltr {
+    border-radius: 5px 0 0 5px;
+}
+
+a.fg-button-img {
+    padding: 0em .9em;
+    border-radius: 0 5px 5px 0;
+}
+
+a.fg-button-img img {
+    vertical-align: middle;
+}
+
+.ui-jqgrid td.ui-state-hover,
+a:hover.fg-button,
+a:hover.fg-button-img,
+.ui-state-active-bbva,
+span.fg-button {
+	/*
+    background: #0079c1;
+    background: -moz-linear-gradient(top, #0079c1 0, #00529b 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #0079c1), color-stop(100%, #00529b));
+    background: -webkit-linear-gradient(top, #0079c1 0, #00529b 100%);
+    background: -o-linear-gradient(top, #0079c1 0, #00529b 100%);
+    background: -ms-linear-gradient(top, #0079c1 0, #00529b 100%);
+    background: linear-gradient(to bottom, #0079c1 0, #00529b 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#0079c1, endColorstr=#00529b, GradientType=0);
+    */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5) inset;
+}
+
+.ui-jqgrid th.ui-state-hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5) inset;
+}
+
+a:hover.fg-button-img {
+    border-radius: 0 5px 5px 0;
+}
+
+/* Rev */
+input.ui-text-clean {
+    height: 28px;
+    vertical-align: middle;
+    padding: 0px;
+    padding-left: 4px;
+    text-align: left !important;
+    border: 1px solid #2361AD;
+    padding-right: 4px;
+    text-align: right;
+}
+
+input[type="text"],
+input.ui-text,
+div.ui-label {
+    border: 1px solid #E8E8E6;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    box-shadow: inset 0 2px 3px 0 rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: inset 0 2px 3px 0 rgba(0, 0, 0, 0.16);
+    -webkit-box-shadow: inset 0 2px 3px 0 rgba(0, 0, 0, 0.16);
+    color: #333;
+    padding-left: 6px;
+    padding-right: 6px;
+    /*padding: .583em .755em .5em .755em;*/
+    height: 26px;
+    background: #fff;
+}
+
+div.ui-label {
+    background-color: #f8f8f5;
+    color: #616161;
+    line-height: 26px;
+}
+
+input.ui-text-highlight {
+    border: 1px solid #89AFD3;
+}
+
+input.ui-text-highlight-warning {
+    border: 1px solid #89AFD3;
+    box-shadow: inset 0 2px 3px 0 rgba(224, 246, 246, 0.16);
+    -webkit-box-shadow: inset 0 2px 3px 0 rgba(224, 246, 246, 0.16);
+    -moz-box-shadow: inset 0 2px 3px 0 rgba(224, 246, 246, 0.16);
+}
+
+.ui-text-date-icon {
+    background: url("../img/calendario16x16.png") no-repeat;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+}
+
+.ui-text-time-icon {
+    background: url("../img/clock.png") no-repeat;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+}
+
+input.ui-text-date {
+    /* background: url("../img/calendario16x16.png") no-repeat 66px center; calendar.gif
+    padding-right: 18px; */
+    width: 66px;
+}
+
+input.ui-text-time {
+    /* background: url("../img/calendario16x16.png") no-repeat 66px center; clock.png
+    padding-right: 18px; */
+    width: 34px;
+}
+
+input.ui-text-disabled {
+    background: url("../theme/bbva/images/ui-bg_glass_80_eaf4fe_1x400.png");
+    border: 1px solid #eaf4fe;
+    color: #094fa4;
+}
+
+input.ui-text-conflicto {
+    border: 1px solid #fef1ec;
+    background: #fef1ec url(../theme/bbva/images/ui-bg_glass_95_fef1ec_1x400.png) 50% 50% repeat-x;
+    color: #cd0a0a;
+    box-shadow: 0 0 5px #cd0a0a;
+    -webkit-box-shadow: 0 0 5px #cd0a0a;
+}
+
+/** select.sel{
+	border: 1px solid #CCC;
+	border-radius: 5px;
+	box-shadow: inset 1px 1px 3px #BBB;
+	outline:none;
+	color:#71777f;
+	font-size:12px;
+	font-family:Arial;
+	height: 23px;
+} **/
+
+/** .ui-icon-disk {
+	background: url("../theme/bbva/images/ui-icon-bbva-disk.png") !important;
+} **/
+
+.ui-icon-pdf {
+    background: url("../img/pdf.png") !important;
+}
+
+.ui-icon-xls {
+    background: url("../img/excel.png") !important;
+}
+
+.u-icon-eliminar,
+.u-icon-editar,
+.u-icon-ver-detalle {
+    cursor: pointer;
+    height: 18px;
+    display: inline-block;
+    padding-left: 3px;
+    padding-right: 3px;
+    background: url("../img/ver.png") no-repeat !important;
+}
+
+.u-icon-editar {
+    background: url("../img/modificar.png") no-repeat !important;
+}
+
+.u-icon-eliminar {
+    background: url("../img/eliminar.png") no-repeat !important;
+}
+
+.pui-chkbox .ui-state-default {
+    color: #2e6e9e;
+    font-weight: bold;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+    /*
+    border: 1px solid #BED6F8;
+    background: #dfeffc url(../theme/bbva/images/ui-bg_glass_75_d0e5f5_1x400.png) 50% 50% repeat-x;
+    background: #dfeffc linear-gradient(top, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+    background: #dfeffc -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.8)), to(rgba(255, 255, 255, 0)));
+    background: #dfeffc -moz-linear-gradient(top, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+    box-shadow: 0px 0px 8px #EEF9FD;
+    -moz-box-shadow: 0 0 5px #EEF9FD;
+    -webkit-box-shadow: 0px 0px 8px #EEF9FD;
+    */
+}
+
+.pui-chkbox .ui-state-active {
+    border: 1px solid #79B7E7;
+    background: url("../theme/bbva/images/ui-bg_inset-hard_100_f5f8f9_1x100.png") repeat-x scroll 50% 50% #F5F8F9;
+    font-weight: bold;
+    color: #E17009;
+}
+
+.pui-chkbox-icon {
+    background-image: url("../theme/bbva/images/ui-icons_f9bd01_256x240.png") !important; /* ui-icons_2361ad_256x240 */
+}
+
+.pui-radiobutton .ui-state-default {
+    color: #2e6e9e;
+    font-weight: bold;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+    border: 1px solid #BED6F8;
+    background: #dfeffc url(../theme/bbva/images/ui-bg_glass_75_d0e5f5_1x400.png) 50% 50% repeat-x;
+    background: #dfeffc linear-gradient(top, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+    background: #dfeffc -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.8)), to(rgba(255, 255, 255, 0)));
+    background: #dfeffc -moz-linear-gradient(top, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+    box-shadow: 0px 0px 8px #EEF9FD;
+    -moz-box-shadow: 0 0 5px #EEF9FD;
+    -webkit-box-shadow: 0px 0px 8px #EEF9FD;
+}
+
+.pui-radiobutton .ui-state-active {
+    border: 1px solid #79B7E7;
+    background: url("../theme/bbva/images/ui-bg_inset-hard_100_f5f8f9_1x100.png") repeat-x scroll 50% 50% #F5F8F9;
+    font-weight: bold;
+    color: #E17009;
+}
+
+.pui-radiobutton-icon {
+    background-image: url("../theme/bbva/images/ui-icons_f9bd01_256x240.png") !important; /* ui-icons_2361ad_256x240 */
+}
+
+.loading {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    background-image: none;
+    border: 1px solid #f5f7f8;
+    background-color: #ededed;
+    display: none;
+    z-index: 100011;
+    outline: 0px;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    padding: 0px !important;
+}
+
+.loadingContent {
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border: 1px solid #dcdcdc;
+    background: #fff;
+    position: relative;
+    overflow: visible;
+    height: 98%;
+    width: 98%;
+    margin: auto;
+}
+
+.loading .loadingImage {
+    position: relative;
+    height: 80%;
+    width: 100%;
+    background: #fff url(../img/cargando.gif) center center no-repeat;
+    display: block;
+}
+
+.loading .loadingText {
+    color: #555;
+    text-align: center;
+    display: block;
+}
+
+.ui-widget-overlay {
+    background: #2d5972 url("../img/ui-bg_flat_0_2d5972_40x100.png") 50% 50% repeat-x;
+    opacity: .30;
+    filter: Alpha(Opacity=30);
+}
+
+.pui-tabview .pui-tabview-nav li a {
+    padding: 2px 4px;
+}
+
+.pui-picklist .pui-picklist-listwrapper .ui-widget-header {
+    height: 30px !important;
+    line-height: 28px !important;
+}
+
+.pui-dropdown-panel li.ui-state-hover,
+.pui-picklist li.ui-state-hover {
+    background: #EEF9FD !important;
+    color: #363636;
+}
+
+.pui-dropdown-panel li.ui-state-highlight,
+.pui-picklist li.ui-state-highlight {
+    background: #e0f6fc !important;
+    font-weight: normal !important;
+    color: #094FA4 !important;
+}
+
+.pui-spinner input {
+    margin-right: 15px;
+}
+
+.pui-spinner .pui-spinner-button {
+    height: 43%;
+}
+
+.pui-tabview .pui-tabview-nav li a {
+    padding: 0px 6px;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+.pui-tabview .pui-tabview-panel {
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+
+.pui-tabview {
+    position: relative;
+    border: none !important;
+    padding: 0px;
+}
+
+.pui-tabview .ui-widget-header {
+    background: none !important;
+    border: none !important;
+    height: 30px !important;
+    line-height: 28px !important;
+}
+
+.pui-tabview .ui-state-default {
+    background: none repeat scroll 0 0 #f0f2ef;
+    border: 1px solid #dcdcdc;
+}
+
+.pui-tabview .ui-state-active {
+    background: none repeat scroll 0 0 #fff;
+    border: 1px solid #dcdcdc;
+}
+
+.pui-tabview .ui-state-default a,
+.pui-tabview .ui-state-default a:link,
+.pui-tabview .ui-state-default a:visited {
+    color: black;
+}
+
+.pui-tabview .ui-state-active a,
+.pui-tabview .ui-state-active a:link,
+.pui-tabview .ui-state-active a:visited {
+    color: black;
+    font-family: "BBVA Web Medium" !important;
+}
+
+.pui-dropdown-container .ui-state-default {
+    background: none;
+    border: 1px solid #E8E8E6;
+}
+
+.pui-dropdown-container .pui-inputtext {
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    box-shadow: inset 0 2px 3px 0 rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: inset 0 2px 3px 0 rgba(0, 0, 0, 0.16);
+    -webkit-box-shadow: inset 0 2px 3px 0 rgba(0, 0, 0, 0.16);
+    color: #333;
+    font: 14px Arial, sans-serif;
+    padding: 5px .755em .5em .755em;
+    height: 16px;
+    background: #fff;
+}
+
+.pui-dropdown-panel {
+    border: 1px solid #E8E8E6;
+}
+
+.pui-dropdown-panel .pui-dropdown-filter {
+    width: 90%;
+}
+
+.pui-dropdown {
+    height: 26px;
+}
+
+.pui-dropdown-filter-container {
+    width: 93%;
+}
+
+.pui-dropdown-filter-container .pui-inputtext {
+    background: #fff;
+    color: #000;
+    border: 1px solid #E8E8E6;
+}
+
+.pui-dropdown-filter-container input.ui-state-hover {
+    border: 1px solid #89AFD3;
+}
+
+.pui-dropdown-panel .pui-dropdown-filter-container .ui-icon {
+    position: absolute;
+    right: 5px;
+    top: 15px;
+}
+
+.pui-dropdown .pui-dropdown-trigger .ui-icon {
+    margin-top: 5px;
+}
+
+.pui-dropdown .pui-dropdown-trigger {
+    background: #0079c1;
+    background: linear-gradient(to bottom, #0079c1 0, #00559d 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0079c1', endColorstr='#00559d', GradientType=0);
+    border: 1px solid #00559d;
+}
+
+.pui-dropdown .ui-state-hover div.pui-dropdown-trigger {
+    background: #0069b1;
+    background: linear-gradient(to bottom, #0069b1 0, #004b8c 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0069b1', endColorstr='#004b8c', GradientType=0);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .2);
+    border: 1px solid #003c6f;
+    transition: background-position .1s linear;
+}
+
+.pui-button-autocomplete {
+    height: 26px;
+    top: -2px;
+    border-bottom-left-radius: 0px !important;
+    border-top-left-radius: 0px !important;
+}
+
+/* .chrome .pui-button-autocomplete {
+    top: -2px;
+    height: 26px;
+} */
+
+.pui-inputtext {
+    border-bottom-right-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+    padding: 0px;
+    height: 24px !important;
+}
+
+.pui-ui-state-highlight {
+    background: #e0f6fc;
+    color: #094FA4;
+}
+
+input[type="file"] {
+    display: block;
+    height: 28px;
+    width: 80px;
+    overflow: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.button-file {
+    position: relative;
+}
+
+.button-file-1 {
+    position: relative;
+    width: 82px;
+}
+
+.ui-icon-btn-zip,
+.ui-icon-btn-xml,
+.ui-icon-btn-pdf,
+.ui-icon-btn-xls,
+.ui-icon-btn-log,
+.ui-icon-btn-html {
+    display: inline-block;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    background: url("../img/pdf.png") no-repeat center center !important;
+}
+
+.ui-icon-btn-zip {
+    background: url("../img/zip.png") no-repeat center center !important;
+}
+
+.ui-icon-btn-xml {
+    background: url("../img/xml.png") no-repeat center center !important;
+}
+
+.ui-icon-btn-xls {
+    background: url("../img/xls.png") no-repeat center center !important;
+}
+
+.ui-icon-btn-log {
+    background: url("../img/text.png") no-repeat center center !important;
+}
+
+.ui-icon-btn-html {
+    background: url("../img/html.png") no-repeat center center !important;
+}

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:batch="http://www.springframework.org/schema/batch"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd">
+
+    <bean id="descomprimirArchivoTasklet" class="com.bbva.fatca.batch.tasklet.ComprimirArchivoTasklet"
+          scope="step">
+        <property name="operacion" value="descomprimir"/>
+        <property name="archivoEntrada" value="#{jobParameters[archivoZip]}"/>
+        <property name="archivoSalida" value="#{jobParameters[directorioTrabajo]}"/>
+    </bean>
+
+    <bean id="descifrarArchivoTasklet" class="com.bbva.fatca.batch.tasklet.CifrarArchivoTasklet"
+          scope="step">
+        <property name="operacion" value="descifrar"/>
+        <property name="archivoEntrada" value="#{jobParameters[archivoXMLFirmadoCifrado]}"/>
+        <property name="archivoSalida" value="#{jobParameters[archivoXMLFirmadoZip]}"/>
+        <property name="archivoEntradaLlave" value="#{jobParameters[llaveCertificadoBBVA]}"/>
+        <property name="archivoSalidaLlave" value="#{jobParameters[llaveIRS]}"/>
+    </bean>
+
+    <bean id="descomprimirArchivoFinalTasklet" class="com.bbva.fatca.batch.tasklet.ComprimirArchivoTasklet"
+          scope="step">
+        <property name="operacion" value="descomprimirFinal"/>
+        <property name="nombreArchivo" value="#{jobParameters[archivoXML]}"/>
+        <property name="archivoEntrada" value="#{jobParameters[archivoXMLFirmadoZip]}"/>
+        <property name="archivoSalida" value="#{jobParameters[directorioTrabajo]}"/>
+    </bean>
+
+    <batch:job id="procesoDescompresionArchivo">
+        <batch:step id="descomprimirArchivo" next="descifrarArchivoZip">
+            <batch:tasklet ref="descomprimirArchivoTasklet"/>
+        </batch:step>
+        <batch:step id="descifrarArchivoZip" next="descomprimirArchivoFinal">
+            <batch:tasklet ref="descifrarArchivoTasklet"/>
+        </batch:step>
+        <batch:step id="descomprimirArchivoFinal">
+            <batch:tasklet ref="descomprimirArchivoFinalTasklet"/>
+        </batch:step>
+        <batch:listeners>
+            <batch:listener ref="monitoringExecutionListener"/>
+        </batch:listeners>
+    </batch:job>
+</beans>

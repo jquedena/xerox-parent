@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.bureau.xerox.domain.Parametro" table="PARAMETRO">
+        <id name="id" type="long">
+            <column name="ID" precision="10" scale="0"/>
+            <generator class="sequence">
+                <param name="sequence">SQ_PARAMETRO</param>
+            </generator>
+        </id>
+        <many-to-one name="parametro" class="com.bureau.xerox.domain.Parametro"
+                     fetch="select">
+            <column name="PARAMETRO_ID" precision="10" scale="0"/>
+        </many-to-one>
+        <many-to-one name="parametroTipo" class="com.bureau.xerox.domain.Parametro"
+                     fetch="select" insert="false" update="false">
+            <column name="TIPO" precision="10" scale="0"/>
+        </many-to-one>
+        <property name="tipo" type="long">
+            <column name="TIPO" precision="10" scale="0" not-null="true"/>
+        </property>
+        <property name="nombre" type="string">
+            <column name="NOMBRE" length="1200" not-null="true"/>
+        </property>
+        <property name="descripcion" type="string">
+            <column name="DESCRIPCION" length="2000"/>
+        </property>
+        <property name="estado" type="string">
+            <column name="ESTADO" length="4" not-null="true"/>
+        </property>
+        <property name="codigo" type="string">
+            <column name="CODIGO" length="50"/>
+        </property>
+        <property name="codigoEti" type="string">
+            <column name="CODIGO_ETI" length="100"/>
+        </property>
+        <property name="codigoHabil" type="char">
+            <column name="CODIGO_HABIL" length="1" not-null="true"/>
+        </property>
+        <property name="entero" type="java.lang.Long">
+            <column name="ENTERO" precision="10" scale="0"/>
+        </property>
+        <property name="enteroEti" type="string">
+            <column name="ENTERO_ETI" length="400"/>
+        </property>
+        <property name="enteroHabil" type="char">
+            <column name="ENTERO_HABIL" length="1" not-null="true"/>
+        </property>
+        <property name="decimales" type="big_decimal">
+            <column name="DECIMALES" precision="22" scale="0"/>
+        </property>
+        <property name="decimalesEti" type="string">
+            <column name="DECIMALES_ETI" length="400"/>
+        </property>
+        <property name="decimalesHabil" type="char">
+            <column name="DECIMALES_HABIL" length="1" not-null="true"/>
+        </property>
+        <property name="texto" type="string">
+            <column name="TEXTO" length="2000"/>
+        </property>
+        <property name="textoEti" type="string">
+            <column name="TEXTO_ETI" length="400"/>
+        </property>
+        <property name="textoHabil" type="char">
+            <column name="TEXTO_HABIL" length="1" not-null="true"/>
+        </property>
+        <property name="texto2" type="string">
+            <column name="TEXTO2" length="2000"/>
+        </property>
+        <property name="textoEti2" type="string">
+            <column name="TEXTO_ETI2" length="400"/>
+        </property>
+        <property name="textoHabil2" type="char">
+            <column name="TEXTO_HABIL2" length="1" not-null="true"/>
+        </property>
+        <property name="texto3" type="string">
+            <column name="TEXTO3" length="2000"/>
+        </property>
+        <property name="textoEti3" type="string">
+            <column name="TEXTO_ETI3" length="400"/>
+        </property>
+        <property name="textoHabil3" type="char">
+            <column name="TEXTO_HABIL3" length="1" not-null="true"/>
+        </property>
+        <property name="fecha" type="date">
+            <column name="FECHA" length="7"/>
+        </property>
+        <property name="fechaEti" type="string">
+            <column name="FECHA_ETI" length="400"/>
+        </property>
+        <property name="fechaHabil" type="char">
+            <column name="FECHA_HABIL" length="1" not-null="true"/>
+        </property>
+        <property name="hora" type="string">
+            <column name="HORA" length="20"/>
+        </property>
+        <property name="horaEti" type="string">
+            <column name="HORA_ETI" length="100"/>
+        </property>
+        <property name="horaHabil" type="char">
+            <column name="HORA_HABIL" length="1" not-null="true"/>
+        </property>
+        <property name="booleano" type="java.lang.Character">
+            <column name="BOOLEANO" length="1"/>
+        </property>
+        <property name="booleanoEti" type="string">
+            <column name="BOOLEANO_ETI" length="400"/>
+        </property>
+        <property name="booleanoHabil" type="char">
+            <column name="BOOLEANO_HABIL" length="1" not-null="true"/>
+        </property>
+        <property name="funcion" type="string">
+            <column name="FUNCION" length="400"/>
+        </property>
+        <property name="funcionEti" type="string">
+            <column name="FUNCION_ETI" length="100"/>
+        </property>
+        <property name="funcionHabil" type="char">
+            <column name="FUNCION_HABIL" length="1" not-null="true"/>
+        </property>
+        <property name="funcionMsg" type="string">
+            <column name="FUNCION_MSG" length="800"/>
+        </property>
+        <property name="permiteHijo" type="java.lang.Character">
+            <column name="PERMITE_HIJO" length="1"/>
+        </property>
+        <property name="fechaModificacion" type="timestamp">
+            <column name="FECHA_MODIFICACION" length="7"/>
+        </property>
+        <property name="fechaCreacion" type="timestamp">
+            <column name="FECHA_CREACION" length="7" not-null="true"/>
+        </property>
+        <property name="usuarioCreacion" type="string">
+            <column name="USUARIO_CREACION" length="28" not-null="true"/>
+        </property>
+        <property name="usuarioModificacion" type="string">
+            <column name="USUARIO_MODIFICACION" length="28"/>
+        </property>
+    </class>
+</hibernate-mapping>

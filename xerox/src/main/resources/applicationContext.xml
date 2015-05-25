@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:batch="http://www.springframework.org/schema/batch"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <property name="favorPathExtension" value="true"/>
+        <property name="ignoreAcceptHeader" value="true"/>
+        <property name="defaultContentType" value="text/html"/>
+        <property name="useJaf" value="false"/>
+        <property name="mediaTypes">
+            <map>
+                <entry key="html" value="text/html"/>
+                <entry key="json" value="application/json"/>
+                <entry key="xml" value="application/xml"/>
+            </map>
+        </property>
+    </bean>
+
+    <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager"/>
+    <bean class="com.everis.web.postprocessor.WebConfiguringPostProcessor"/>
+
+    <tx:annotation-driven/>
+    <context:annotation-config/>
+    <context:component-scan base-package="com.bureau.xerox,com.bureau.quartz,com.bureau.batch"/>
+
+    <aop:aspectj-autoproxy/>
+    <bean id="fetchProfileInterceptor" class="com.bureau.batch.aop.FetchProfileInterceptor"/>
+
+    <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName" value="jdbc/APP_FATCA"/>
+        <property name="resourceRef" value="true"/>
+        <property name="lookupOnStartup" value="false"/>
+        <property name="cache" value="true"/>
+        <property name="proxyInterface" value="javax.sql.DataSource"/>
+    </bean>
+
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configurationClass" value="org.hibernate.cfg.AnnotationConfiguration"/>
+        <property name="configLocation" value="classpath:hibernate-config.xml"/>
+    </bean>
+
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- Begin: Scheduler -->
+    <bean id="quartzScheduler"
+          class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="jobFactory">
+            <bean class="org.springframework.scheduling.quartz.SpringBeanJobFactory"/>
+        </property>
+        <property name="dataSource" ref="dataSource"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="overwriteExistingJobs" value="true"/>
+        <property name="configLocation" value="classpath:quartz.properties"/>
+        <property name="applicationContextSchedulerContextKey" value="applicationContext"/>
+        <property name="waitForJobsToCompleteOnShutdown" value="false"/>
+        <property name="autoStartup" value="true"/>
+        <property name="quartzProperties">
+            <props>
+                <prop key="org.quartz.jobStore.selectWithLockSQL">SELECT * FROM {0}LOCKS UPDLOCK WHERE LOCK_NAME = ?
+                </prop>
+            </props>
+        </property>
+    </bean>
+    <!-- End: Scheduler -->
+
+    <!-- Begin: Batch Context -->
+    <bean id="jobRepository"
+          class="org.springframework.batch.core.repository.support.JobRepositoryFactoryBean">
+        <property name="transactionManager" ref="transactionManagerBatch"/>
+        <property name="dataSource" ref="dataSource"/>
+        <property name="databaseType" value="oracle"/>
+        <property name="tablePrefix" value="FATCA.BATCH_"/>
+    </bean>
+
+    <bean id="transactionManagerBatch"
+          class="org.springframework.batch.support.transaction.ResourcelessTransactionManager"/>
+
+    <bean id="jobLauncher"
+          class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+        <property name="jobRepository" ref="jobRepository"/>
+    </bean>
+
+    <bean id="jobRegistryBeanPostProcessor"
+          class="org.springframework.batch.core.configuration.support.JobRegistryBeanPostProcessor">
+        <property name="jobRegistry" ref="jobRegistry"/>
+    </bean>
+
+    <bean id="jobRegistry"
+          class="org.springframework.batch.core.configuration.support.MapJobRegistry"/>
+
+    <bean id="jobExplorer"
+          class="org.springframework.batch.core.explore.support.JobExplorerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="lobHandler" ref="lobHandler"/>
+        <property name="tablePrefix" value="FATCA.BATCH_"/>
+    </bean>
+
+    <bean id="lobHandler" class="org.springframework.jdbc.support.lob.DefaultLobHandler"/>
+    <!-- End: Batch Context -->
+</beans>

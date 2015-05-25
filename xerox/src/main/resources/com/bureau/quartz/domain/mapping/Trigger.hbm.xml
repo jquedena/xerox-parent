@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.bureau.quartz.domain.Trigger" table="QRTZ_VW_TRIGGERS">
+        <id name="triggerName" type="string">
+            <column name="TRIGGER_NAME"/>
+        </id>
+        <property name="triggerGroup" type="string">
+            <column name="TRIGGER_GROUP"/>
+        </property>
+        <property name="jobName" type="string">
+            <column name="JOB_NAME"/>
+        </property>
+        <property name="jobGroup" type="string">
+            <column name="JOB_GROUP"/>
+        </property>
+        <property name="nextFireTime" type="long">
+            <column name="NEXT_FIRE_TIME"/>
+        </property>
+        <property name="triggerState" type="string">
+            <column name="TRIGGER_STATE"/>
+        </property>
+        <property name="triggerType" type="string">
+            <column name="TRIGGER_TYPE"/>
+        </property>
+        <property name="startTime" type="long">
+            <column name="START_TIME"/>
+        </property>
+        <property name="endTime" type="long">
+            <column name="END_TIME"/>
+        </property>
+        <property name="exitCode" type="string">
+            <column name="EXIT_CODE"/>
+        </property>
+    </class>
+</hibernate-mapping>

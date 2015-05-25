@@ -1,0 +1,30 @@
+Manifest-Version: 1.0
+Class-Path: com.everis.web.jar com.everis.core.jar com.everis.util.jar
+  log4j-1.2.17.jar commons-lang3-3.1.jar commons-codec-1.5.jar commons
+ -io-2.4.jar commons-fileupload-1.3.jar saaj-api-1.3.5.jar flexjson-3.
+ 2.jar commons-beanutils-1.8.0.jar commons-logging-1.1.1.jar bcprov-jd
+ k16-1.46.jar bcpg-jdk16-1.46.jar hibernate-core-3.6.7.Final.jar antlr
+ -2.7.6.jar commons-collections-3.1.jar dom4j-1.6.1.jar hibernate-comm
+ ons-annotations-3.2.0.Final.jar slf4j-api-1.6.6.jar hibernate-jpa-2.0
+ -api-1.0.1.Final.jar jta-1.1.jar hibernate-ehcache-3.6.7.Final.jar eh
+ cache-core-2.4.3.jar hibernate-entitymanager-3.6.7.Final.jar javassis
+ t-3.12.0.GA.jar spring-context-3.2.4.RELEASE.jar spring-aop-3.2.4.REL
+ EASE.jar aopalliance-1.0.jar spring-beans-3.2.4.RELEASE.jar spring-co
+ re-3.2.4.RELEASE.jar spring-expression-3.2.4.RELEASE.jar spring-jdbc-
+ 3.2.4.RELEASE.jar spring-tx-3.2.4.RELEASE.jar spring-orm-3.2.4.RELEAS
+ E.jar cglib-nodep-2.2.2.jar spring-aspects-3.2.4.RELEASE.jar aspectjw
+ eaver-1.7.1.jar spring-context-support-3.2.4.RELEASE.jar aspectjrt-1.
+ 7.1.jar spring-web-3.2.4.RELEASE.jar spring-webmvc-3.2.4.RELEASE.jar 
+ jackson-databind-2.2.3.jar jackson-annotations-2.2.3.jar jackson-core
+ -2.2.3.jar slf4j-log4j12-1.7.7.jar tiles-core-2.2.2.jar tiles-api-2.2
+ .2.jar commons-digester-2.0.jar tiles-servlet-2.2.2.jar tiles-jsp-2.2
+ .2.jar tiles-template-2.2.2.jar jstl-1.2.jar com.everis.excel.jar poi
+ -3.10-FINAL.jar poi-ooxml-3.10-FINAL.jar poi-ooxml-schemas-3.10-FINAL
+ .jar xmlbeans-2.3.0.jar xml-apis-1.0.b2.jar com.everis.mail.jar mail-
+ 1.4.7.jar activation-1.1.jar jaxb-api-2.2.12.jar spring-ws-core-2.1.4
+ .RELEASE.jar spring-xml-2.1.4.RELEASE.jar stax-api-1.0-2.jar spring-o
+ xm-3.2.4.RELEASE.jar wsdl4j-1.6.1.jar spring-batch-core-2.2.0.RELEASE
+ .jar spring-batch-infrastructure-2.2.0.RELEASE.jar spring-retry-1.0.2
+ .RELEASE.jar xstream-1.3.jar xpp3_min-1.1.4c.jar jettison-1.1.jar qua
+ rtz-2.2.1.jar c3p0-0.9.1.1.jar sqljdbc4-4.0.jar
+
